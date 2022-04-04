@@ -16,13 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core import views
-
+from django.contrib.auth import views as auth_views
 
 # works in a pattern
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
+
+    path('sign-in/', auth_views.LoginView.as_view(template_name="sign_in.html")),
+    path('sign-out/', auth_views.LogoutView.as_view(template_name="/")),
+
+
     path('customer/', views.customer_page),
     path('courier/', views.courier_page),
 ]
